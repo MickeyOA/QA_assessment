@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "34bfa684-2713-41b1-a343-a72d02005060",
+    "name": "IandM_Assessment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28010835"
+  },
+  "item": [
+    {
+      "name": "TC001_Valid-Endpoint",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//=========================\r",
+              "//I&M QA Assessment - API\r",
+              "//Endpoint: https://randomuser.me/api/\r",
+              "// 8 test cases\r",
+              "// author\r",
+              "// date\r",
+              "\r",
+              "//const BASE_URL = \"https://randomuser.me/api/\";\r",
+              "//TC001: Valid Endpoint\r",
+              "const jsonData = pm.response.json();\r",
+              "\r",
+              "pm.test(\"status code is 200\", function(){\r",
+              "    //pm.response.to.have.status(200);\r",
+              "    pm.expect(pm.response.code).to.eql(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Returns 1 user\", function(){\r",
+              "    pm.expect(jsonData.results.length).to.eql(1);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Email contains @symbol\", function(){\r",
+              "    pm.expect(jsonData.results[0].email).to.include('@');\r",
+              "});\r",
+              "pm.test(\"Phone number contains digits\", function(){\r",
+              "    pm.expect(jsonData.results[0].phone).to.match(/\\d+/);\r",
+              "});\r",
+              "pm.test(\"Name field exist\", function(){\r",
+              "    pm.expect(jsonData.results[0].name).to.have.property('first');\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC002_Multiple results parameter",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/?results=6",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ],
+          "query": [
+            {
+              "key": "results",
+              "value": "6"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC003_Data Integrity",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/?seed=abc123",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ],
+          "query": [
+            {
+              "key": "seed",
+              "value": "abc123"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC004_Invalid-Endpoint",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/invalid-endpoint",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "invalid-endpoint"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC005_Invalid-parameter value",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/?results=-1",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ],
+          "query": [
+            {
+              "key": "results",
+              "value": "-1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC006_Empty field",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/?results=",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ],
+          "query": [
+            {
+              "key": "results",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC007_Invalid Data type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TC008_Large Data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://randomuser.me/api/?results=1000",
+          "protocol": "https",
+          "host": [
+            "randomuser",
+            "me"
+          ],
+          "path": [
+            "api",
+            ""
+          ],
+          "query": [
+            {
+              "key": "results",
+              "value": "1000"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
